@@ -23,14 +23,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pl.wr.math.number.Fraction;
+
 // [START example]
 @SuppressWarnings("serial")
 public class HelloServlet extends HttpServlet {
 
-  @Override
-  public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    PrintWriter out = resp.getWriter();
-    out.println("rssfiz-math hello world");
-  }
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        PrintWriter out = resp.getWriter();
+
+        Fraction x = Fraction.ONE_FIFTH;
+        Fraction y = new Fraction(7, 9);
+        out.println("rssfiz-math hello world <br>");
+        out.println(x);
+        out.println("<br>+<br>");
+        out.println(y);
+        out.println("<br>=<br>");
+        out.println(Fraction.add(x, y));
+    }
 }
 // [END example]
