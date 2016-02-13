@@ -34,7 +34,7 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         Fraction x = Fraction.ONE_FIFTH;
-        Fraction y = new Fraction(7, 9);
+        Fraction y = new Fraction(5, 3);
         out.println("nowe <br>");
         out.println("rssfiz-math helloo world <br>");
         out.println(x);
