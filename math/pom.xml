@@ -76,6 +76,11 @@
 	</build>
 	<repositories>
 		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</releases>
 			<id>rss_repository</id>
 			<name>RodakSoftStudio</name>
 			<url>https://sourceforge.net/projects/rssfiz/files/maven2/</url>
