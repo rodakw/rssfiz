@@ -54,7 +54,7 @@
 			<plugin>
 				<groupId>com.google.appengine</groupId>
 				<artifactId>appengine-maven-plugin</artifactId>
-				<version>1.9.31</version>
+				<version>1.9.32</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
