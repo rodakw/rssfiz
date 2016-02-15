@@ -33,7 +33,8 @@ public class HelloServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter out = resp.getWriter();
 
-        Fraction x = Fraction.ONE_FIFTH;
+//        Fraction x = Fraction.ONE_FIFTH;
+        Fraction x = new Fraction(5, 3, 4, -2);
         Fraction y = new Fraction(5, 3);
         out.println("nowe <br>");
         out.println("rssfiz-math helloo world <br>");
@@ -41,7 +42,10 @@ public class HelloServlet extends HttpServlet {
         out.println("<br>+<br>");
         out.println(y);
         out.println("<br>=<br>");
-        out.println(Fraction.add(x, y));
+        Fraction z = Fraction.add(x, y);
+        out.println(z);
+        out.println("<br>");
+        out.println(z.doubleValue());
     }
 }
 // [END example]
