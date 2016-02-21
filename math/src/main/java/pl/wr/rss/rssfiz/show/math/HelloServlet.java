@@ -90,6 +90,7 @@ public class HelloServlet extends HttpServlet {
 			}
 			if (nowe != 0) {
 				Fraction news = new Fraction(nowe, result.getDenominator());
+				Fraction.reduce(news);
 				out.println(" " + news.getNumerator() + "/" + news.getDenominator());
 			}
 			out.println("<br>" + result.doubleValue());
@@ -103,13 +104,13 @@ public class HelloServlet extends HttpServlet {
 
 	private String body() {
 		String tekst = "<form action='Kalkulator' method='post'>" + "<fieldset>"
-				+ "<input type='text' name='total1' placeholder='Total' />"
+				+ "<input type='text' name='total1' placeholder='Total' /> "
 				+ "<input type='text' name='numerator1' placeholder='Numerator' />  /  "
 				+ "<input type='text' name='denominator1' placeholder='Denominator' />" + "* 10 ^ "
 				+ "<input type='text' name='decimalPower1' placeholder='Decimal Power' />" + "<br>"
 				+ "<select name='operacja'>" + "<option>+</option>" + "<option>-</option>" + "<option>*</option>"
 				+ "<option>/</option>" + "</select>" + "<br>"
-				+ "<input type='text' name='total2' placeholder='Total' />"
+				+ "<input type='text' name='total2' placeholder='Total' /> "
 				+ "<input type='text' name='numerator2' placeholder='Numerator' />  /  "
 				+ "<input type='text' name='denominator2' placeholder='Denominator' />" + "* 10 ^ "
 				+ "<input type='text' name='decimalPower2' placeholder='Decimal Power' />" + "<br>"
