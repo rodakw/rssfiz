@@ -111,6 +111,11 @@ public class HelloServlet extends HttpServlet {
             }
             out.println("<br>" + result.doubleValue());
 
+            if (result.getUncertainty() == Fraction.UNKNOWN) {
+                out.println("<br> result is approximate!");
+
+            }
+
         } catch (Exception e) {
             out.println("Bad data");
         }
@@ -123,13 +128,13 @@ public class HelloServlet extends HttpServlet {
                 + "<input type='text' name='total1' placeholder='Total' /> "
                 + "<input type='text' name='numerator1' placeholder='Numerator' />  /  "
                 + "<input type='text' name='denominator1' placeholder='Denominator' />" + "* 10 ^ "
-                + "<input type='text' name='decimalPower1' placeholder='Decimal Power' />" + "<br>"
+                + "<input type='text' name='decimalPower1' placeholder='Decimal Power' />" + "<br><br>"
                 + "<select name='operacja'>" + "<option>+</option>" + "<option>-</option>" + "<option>*</option>"
-                + "<option>/</option>" + "</select>" + "<br>"
+                + "<option>/</option>" + "</select>" + "<br><br>"
                 + "<input type='text' name='total2' placeholder='Total' /> "
                 + "<input type='text' name='numerator2' placeholder='Numerator' />  /  "
                 + "<input type='text' name='denominator2' placeholder='Denominator' />" + "* 10 ^ "
-                + "<input type='text' name='decimalPower2' placeholder='Decimal Power' />" + "<br>"
+                + "<input type='text' name='decimalPower2' placeholder='Decimal Power' />" + "<br><br>"
                 + "<input type='submit' value='Send' />" + "</fieldset>" + "</form>";
         return tekst;
     }
