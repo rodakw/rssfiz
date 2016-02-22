@@ -91,25 +91,44 @@ public class HelloServlet extends HttpServlet {
                 break;
             }
 
-            out.println("Number1: " + toString(x));
-            out.println("Number2: " + toString(y));
+            long longResult = result.longValue();
+            double doubleResult = result.doubleValue();
+
+            out.println("Number 1: " + toString(x));
+            out.println("Number 2: " + toString(y));
 
             out.println("<br> result = " + result + "<br>");
-            int nowe = (int) (result.getNumerator() * Math.pow(10, result.getDecimalPower())
-                    - result.intValue() * result.getDenominator());
 
             out.print("<h3>result = ");
-            if (result.intValue() != 0) {
-                out.print(result.intValue());
-            } else {
-                out.print(0);
+
+            if (longResult != 0) {
+                out.print(longResult);
+                result = Fraction.subtract(result, new Fraction(result.longValue()));
             }
-            if (nowe != 0) {
-                Fraction news = new Fraction(nowe, result.getDenominator());
-                Fraction.reduce(news);
-                out.println(" " + news.getNumerator() + "/" + news.getDenominator());
+
+            if (result.getNumerator() != 0) {
+                out.println(" " + result.getNumerator() + "/" + result.getDenominator());
             }
-            out.println("<br>" + result.doubleValue());
+
+            int dp = result.getDecimalPower();
+            if (dp != 0) {
+                out.println(" 10^" + dp);
+
+                // inny sposób wyświetlenia
+                out.println("<br>result = ");
+                if (longResult != 0) {
+                    out.print(longResult);
+                }
+                if (dp > 0) {
+                    out.println(
+                            " " + (long) (result.getNumerator() * Math.pow(10, dp)) + "/" + result.getDenominator());
+                } else {
+                    out.println(" " + result.getNumerator() + "/"
+                            + (long) (result.getDenominator() * Math.pow(10, Math.abs(dp))));
+                }
+            }
+
+            out.println("<br>" + doubleResult);
 
             if (result.getUncertainty() == Fraction.UNKNOWN) {
                 out.println("<br> result is approximate!");
