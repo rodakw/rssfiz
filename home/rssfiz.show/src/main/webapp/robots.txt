@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: http://rssfiz-show.appspot.com/map.txt
