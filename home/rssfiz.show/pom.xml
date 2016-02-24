@@ -41,6 +41,11 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		<dependency>
+			<groupId>pl.wr.rss</groupId>
+			<artifactId>rssfiz.math</artifactId>
+			<version>1.0.2</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<!-- for hot reload of the web application -->
@@ -63,4 +68,17 @@
 
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</releases>
+			<id>rss_repository</id>
+			<name>RodakSoftStudio</name>
+			<url>https://sourceforge.net/projects/rssfiz/files/maven2/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 </project>
