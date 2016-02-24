@@ -15,12 +15,8 @@ import pl.wr.rss.rssfiz.show.validator.ExampleValidator;
 @RequestMapping("/exampleForm")
 public class ExampleControler {
 
-    ExampleValidator exampleValidator;
-
     @Autowired
-    public ExampleControler(ExampleValidator exampleValidator) {
-        this.exampleValidator = exampleValidator;
-    }
+    ExampleValidator exampleValidator;
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewForm(Model model) {
@@ -37,7 +33,8 @@ public class ExampleControler {
         exampleValidator.validate(myData, result);
 
         if (!result.hasErrors()) {
-            model.addAttribute("result", myData.getParam1() + myData.getParam2() + myData.getParam3() + myData.getParam4());
+            model.addAttribute("result",
+                    myData.getParam1() + myData.getParam2() + myData.getParam3() + myData.getParam4());
         }
 
         return "exampleForm";
