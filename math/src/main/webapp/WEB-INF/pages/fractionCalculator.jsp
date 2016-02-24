@@ -16,19 +16,15 @@
 
 		<table>
 			<tr>
-				<td>total1 :</td>
-				<td><form:input path="total1" /></td>
-				<td>numerator1 :</td>
-				<td><form:input path="numerator1" /> /</td>
-				<td>denominator1 :</td>
-				<td><form:input path="denominator1" />* 10 ^</td>
-				<td>decimalPower1 :</td>
-				<td><form:input path="decimalPower1" /></td>
+				<td><form:input path="total1" placeholder="total" /></td>
+				<td><form:input path="numerator1" placeholder="numerator" /> /</td>
+				<td><form:input path="denominator1" placeholder="denominator" />* 10 ^</td>
+				<td><form:input path="decimalPower1" placeholder="decimalPower" /></td>
 			</tr>
 
 			<tr>
 				<td>operation :</td>
-				<td>
+				<td  colspan="3">
 					<form:radiobutton path="operation" value="+" />+
 					<form:radiobutton path="operation" value="-" />-
 					<form:radiobutton path="operation" value="*" />*
@@ -37,18 +33,14 @@
 			</tr>
 
 			<tr>
-				<td>total2 :</td>
-				<td><form:input path="total2" /></td>
-				<td>numerator2 :</td>
-				<td><form:input path="numerator2" /> / </td>
-				<td>denominator2 :</td>
-				<td><form:input path="denominator2" />* 10 ^</td>
-				<td>decimalPower2 :</td>
-				<td><form:input path="decimalPower2" /></td>
+				<td><form:input path="total2" placeholder="total"/></td>
+				<td><form:input path="numerator2" placeholder="numerator" /> / </td>
+				<td><form:input path="denominator2" placeholder="denominator"/>* 10 ^</td>
+				<td><form:input path="decimalPower2" placeholder="decimalPower"/></td>
 			</tr>
 
 			<tr>
-				<td colspan="3"><input type="submit" /></td>
+				<td colspan="4"><input type="submit" /></td>
 			</tr>
 		</table>
 	</form:form>

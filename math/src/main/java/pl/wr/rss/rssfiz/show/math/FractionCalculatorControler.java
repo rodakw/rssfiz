@@ -1,4 +1,4 @@
-package pl.wr.rss.rssfiz.show;
+package pl.wr.rss.rssfiz.show.math;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.wr.math.number.Fraction;
-import pl.wr.rss.rssfiz.show.model.MixedNumber;
+import pl.wr.rss.rssfiz.show.math.model.MixedNumber;
 
 @Controller
 @RequestMapping("/fractionCalculator")

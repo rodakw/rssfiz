@@ -1,4 +1,4 @@
-package pl.wr.rss.rssfiz.show.model;
+package pl.wr.rss.rssfiz.show.math.model;
 
 public class MixedNumber {
 
