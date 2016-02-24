@@ -1,0 +1,56 @@
+footer {
+	color: rgb(255, 255, 255);
+	font-size: 10px;
+	position: fixed;
+	bottom: 0px;
+	right: 5px;
+}
+
+h1 {
+	color: rgb(200, 0, 0);
+	text-align: left;
+	font-size: 52px;
+}
+
+.news {
+	color: rgb(236, 236, 0);
+	
+	font-size: 22px;
+	background-color: black;
+}
+
+.news2 {
+	color: rgb(236, 0, 0);
+	font-size: 22px;
+	background-color: black;
+}
+
+ul {
+	float: left;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+li a {
+	cursor: pointer;
+	display: block;
+	float: left;
+	text-align: center;
+	font-size: 1.2em;
+	width: 200px;
+	text-decoration: none;
+	color: aqua;
+	padding: 0.9px 0.9px;
+	margin: 0px 1px 1px 0px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+li a:hover {
+	color: blue;
+	background: gold;
+	border: 1px solid blue;
+}
