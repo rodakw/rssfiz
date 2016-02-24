@@ -143,7 +143,7 @@ public class HelloServlet extends HttpServlet {
     }
 
     private String body() {
-        String tekst = "<form action='Kalkulator' method='post'>" + "<fieldset>"
+        String tekst = "<form action='old/Kalkulator' method='post'>" + "<fieldset>"
                 + "<input type='text' name='total1' placeholder='Total' /> "
                 + "<input type='text' name='numerator1' placeholder='Numerator' />  /  "
                 + "<input type='text' name='denominator1' placeholder='Denominator' />" + "* 10 ^ "
