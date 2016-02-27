@@ -1,5 +1,9 @@
 package pl.wr.rss.rssfiz.show.math;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,16 +13,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.wr.math.number.Fraction;
 import pl.wr.rss.rssfiz.show.math.model.MixedNumber;
+import pl.wr.rss.rssfiz.show.math.validator.FractionDenominatorValidator;
 
 @Controller
 @RequestMapping("/fractionCalculator")
 public class FractionCalculatorControler {
 
+    private int FIRST_NUMBER = 1;
+    private int SECOND_NUMBER = 2;
+
+    @Autowired
+    FractionDenominatorValidator fractionDenominatorValidator;
+
     @RequestMapping(method = RequestMethod.GET)
     public String viewForm(Model model) {
 
-    	MixedNumber em = new MixedNumber();
-        model.addAttribute("myData", em);
+        MixedNumber mixedNumber = new MixedNumber();
+        mixedNumber.setOperation("+");
+
+        model.addAttribute("myData", mixedNumber);
 
         return "fractionCalculator";
     }
@@ -26,41 +39,91 @@ public class FractionCalculatorControler {
     @RequestMapping(method = RequestMethod.POST)
     public String calculateForm(@ModelAttribute("myData") MixedNumber myData, BindingResult result, Model model) {
 
-    	 Long total1 = myData.getTotal1();
-    	 Long total2 = myData.getTotal2();
-    	 Long numerator1 = myData.getNumerator1();
-    	 Long numerator2 = myData.getNumerator2();
-    	 Long denominator1 = myData.getDenominator1();
-    	 Long denominator2 = myData.getDenominator2();
-    	 Integer decimalPower1 = myData.getDecimalPower1();
-    	 Integer decimalPower2 = myData.getDecimalPower2();
-    	 String operation = myData.getOperation();
-    	 
-    	 Fraction outcome = null;
-    	 Fraction x = new Fraction(total1, numerator1, denominator1, decimalPower1);
-         Fraction y = new Fraction(total2, numerator2, denominator2, decimalPower2);
-    	 
-    	 switch (operation) {
-         case "+":
-        	 outcome = Fraction.add(x, y);
-             break;
-         case "-":
-        	 outcome = Fraction.subtract(x, y);
-             break;
-         case "*":
-        	 outcome = Fraction.multiply(x, y);
-             break;
-         case "/":
-        	 outcome = Fraction.divide(x, y);
-             break;
+        Long total1 = myData.getTotal1();
+        Long total2 = myData.getTotal2();
+        Long numerator1 = myData.getNumerator1();
+        Long numerator2 = myData.getNumerator2();
+        Long denominator1 = myData.getDenominator1();
+        Long denominator2 = myData.getDenominator2();
+        Integer decimalPower1 = myData.getDecimalPower1();
+        Integer decimalPower2 = myData.getDecimalPower2();
+        String operation = myData.getOperation();
 
-         default:
-             break;
-         }
-    	 
-            model.addAttribute("result",outcome);
+        Fraction outcome = null;
+        Fraction x = makeFraction(total1, numerator1, denominator1, decimalPower1, FIRST_NUMBER, result);
+        Fraction y = makeFraction(total2, numerator2, denominator2, decimalPower2, SECOND_NUMBER, result);
+
+        switch (operation) {
+        case "+":
+            outcome = Fraction.add(x, y);
+            break;
+        case "-":
+            outcome = Fraction.subtract(x, y);
+            break;
+        case "*":
+            outcome = Fraction.multiply(x, y);
+            break;
+        case "/":
+            if (y.isZero()) {
+                result.reject("number2.required");
+            } else {
+                outcome = Fraction.divide(x, y);
+            }
+            break;
+
+        default:
+            break;
+        }
+
+        model.addAttribute("result", outcome);
 
         return "fractionCalculator";
+    }
+
+    private Fraction makeFraction(Long total, Long numerator, Long denominator, Integer decimalPower, int toValidate,
+            BindingResult errors) {
+
+        boolean isT = total != null;
+        boolean isN = numerator != null;
+        boolean isP = decimalPower != null;
+
+        if (!isT && !isN && !isP) {
+            return Fraction.ZERO;
+        } else if (isT && !isN && !isP) {
+            return new Fraction(total);
+        } else if (isT && !isN & isP) {
+            return new Fraction(total, 0, 1, decimalPower);
+        } else if (!isT && isN & !isP) {
+            validateDenominator(denominator, toValidate, errors);
+            if (!errors.hasErrors()) {
+                return new Fraction(numerator, denominator);
+            }
+        } else if (!isT && isN & isP) {
+            validateDenominator(denominator, toValidate, errors);
+            if (!errors.hasErrors()) {
+                return new Fraction(numerator, denominator, decimalPower);
+            }
+        } else if (isT && isN & !isP) {
+            validateDenominator(denominator, toValidate, errors);
+            if (!errors.hasErrors()) {
+                return new Fraction(total, numerator, denominator, 0);
+            }
+        } else {
+            validateDenominator(denominator, toValidate, errors);
+            if (!errors.hasErrors()) {
+                return new Fraction(total, numerator, denominator, decimalPower);
+            }
+        }
+        return Fraction.ZERO;
+    }
+
+    private void validateDenominator(Long denominator, Integer toValidate, BindingResult errors) {
+
+        Map<String, Number> map = new HashMap<String, Number>();
+        map.put("value", denominator);
+        map.put("number", toValidate);
+
+        fractionDenominatorValidator.validate(map, errors);
     }
 
 }

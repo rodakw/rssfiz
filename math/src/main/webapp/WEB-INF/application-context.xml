@@ -9,7 +9,7 @@
 
 	<context:component-scan base-package="pl.wr.rss.rssfiz.show.math" />
 	
-	<bean class="pl.wr.rss.rssfiz.show.math.validator.FractionCalculatorValidator" />
+	<bean class="pl.wr.rss.rssfiz.show.math.validator.FractionDenominatorValidator" />
 	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">

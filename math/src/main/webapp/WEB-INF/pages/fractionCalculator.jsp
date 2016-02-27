@@ -6,13 +6,15 @@
 
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-<link rel="stylesheet" href="fractionCalculator.css" />
+<link rel="stylesheet" href="/css/fractionCalculator.css" />
 </head>
 
 <body>
-	<h2>Spring's form tags example</h2>
+	<h2>Fraction and mixed number's calculator.</h2>
 
 	<form:form method="POST" commandName="myData">
+	
+	<form:errors path="*" class="errorblock" element="div"/>
 
 		<table>
 			<tr>
@@ -40,7 +42,10 @@
 			</tr>
 
 			<tr>
-				<td colspan="4"><input type="submit" /></td>
+				<td><input type="submit" /></td>
+	</form:form>
+	<form:form method="GET" commandName="myData">
+				<td colspan="3"><input type="submit" value="Resetuj" /></td>
 			</tr>
 		</table>
 	</form:form>
