@@ -1,13 +1,21 @@
-.error
-{
+.error {
 	color: #ff0000;
 }
-	
-.errorblock 
-{
-		color: #000;
-		background-color: #ffEEEE;
-		border: 3px solid #ff0000;
-		padding:8px;
-		margin:16px;
+
+.errorblock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
+}
+
+div.inline {
+	float: left;
+	margin: 5px;
+}
+
+div.newline {
+	clear: both;
+	margin-left: 5px;
 }
