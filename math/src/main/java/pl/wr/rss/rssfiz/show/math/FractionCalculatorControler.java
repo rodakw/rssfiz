@@ -73,7 +73,7 @@ public class FractionCalculatorControler {
 			break;
 
 		default:
-			break;
+			return "fractionCalculator";
 		}
 
 		long longResult = resultFraction.longValue();
