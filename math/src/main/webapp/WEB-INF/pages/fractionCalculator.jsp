@@ -7,6 +7,8 @@
 <spring:message code="numeratorDesc" var="numeratorDesc" />
 <spring:message code="denominatorDesc" var="denominatorDesc" />
 <spring:message code="decimalPowerDesc" var="decimalPowerDesc" />
+<spring:message code="sendButton" var="sendButton" />
+<spring:message code="resetButton" var="resetButton" />
 
 <html>
 
@@ -62,9 +64,9 @@
 					</tr>
 
 					<tr>
-						<td><input type="submit" /></td>
+						<td><input type="submit" value="${sendButton}"/></td>
 
-						<td colspan="3"><input type="reset" onclick="resetForm();" /></td>
+						<td colspan="3"><input type="button" value="${resetButton}" onclick="resetForm();" /></td>
 					</tr>
 				</table>
 			</form:form>
@@ -73,7 +75,7 @@
 
 			<br>
 			<c:if test="${not empty result}">
-				<div class="newline">Result = ${result}</div>
+				<div class="newline"><spring:message code="resultDesc" /> = ${result}</div>
 			</c:if>
 			<div class="fat">
 				<c:if test="${not empty longResult}">
