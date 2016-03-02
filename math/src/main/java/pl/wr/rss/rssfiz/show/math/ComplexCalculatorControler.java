@@ -19,6 +19,6 @@ public class ComplexCalculatorControler {
 
         model.addAttribute("myData", complexNumber);
 
-        return "fractionCalculator";
+        return "complexCalculator";
     }
 }

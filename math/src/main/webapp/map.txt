@@ -1,1 +1,4 @@
-https://rssfiz-math.appspot.com/Kalkulator
+http://rssfiz-math.appspot.com/new/fractionCalculator
+http://rssfiz-math.appspot.com/new/bigFractionCalculator
+http://rssfiz-math.appspot.com/new/complexCalculator
+http://rssfiz-math.appspot.com/old

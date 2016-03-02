@@ -28,7 +28,17 @@
 		</h2>
 		<div id="innerText">
 			<br> <br>
-			<spring:message code="page.text" />
+			<p>
+				<spring:message code="page.text1" />
+				<a href="https://sourceforge.net/projects/rssfiz" target="_blank">https://sourceforge.net/projects/rssfiz</a>
+			</p>
+			<p>
+				<spring:message code="page.text2" />
+			</p>
+			<p>
+				<spring:message code="page.text3" />
+				<a href="/new/bigFractionCalculator">BigFraction</a>
+			</p>
 			<br> <br>
 		</div>
 
@@ -48,11 +58,8 @@
 
 					<tr>
 						<td><spring:message code="operationDesc" /> :</td>
-						<td colspan="3">
-							<form:radiobutton path="operation" value="+" />+ 
-							<form:radiobutton path="operation" value="-" />- 
-							<form:radiobutton path="operation" value="*" />* 
-							<form:radiobutton path="operation" value="/" />/
+						<td colspan="3"><form:radiobutton path="operation" value="+" />+ <form:radiobutton path="operation"
+								value="-" />- <form:radiobutton path="operation" value="*" />* <form:radiobutton path="operation" value="/" />/
 						</td>
 					</tr>
 
@@ -64,18 +71,21 @@
 					</tr>
 
 					<tr>
-						<td><input type="submit" value="${sendButton}"/></td>
+						<td><input type="submit" value="${sendButton}" /></td>
 
 						<td colspan="3"><input type="button" value="${resetButton}" onclick="resetForm();" /></td>
 					</tr>
 				</table>
 			</form:form>
-			
+
 			<form id="resetForm" action="/new/fractionCalculator" method="get"></form>
 
 			<br>
 			<c:if test="${not empty result}">
-				<div class="newline"><spring:message code="resultDesc" /> = ${result}</div>
+				<div class="newline">
+					<spring:message code="resultDesc" />
+					= ${result}
+				</div>
 			</c:if>
 			<div class="fat">
 				<c:if test="${not empty longResult}">
