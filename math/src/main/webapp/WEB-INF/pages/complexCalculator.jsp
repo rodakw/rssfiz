@@ -25,13 +25,13 @@
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="/home">Home</a> <a class="navbar-brand" href="/fractionCalculator">Fraction</a>
-					<div class="navbar-brand">BigFraction</div>
-					<a class="navbar-brand" href="/complexCalculator">Complex</a>
+					<a class="navbar-brand" href="/home">Home</a> <a class="navbar-brand" href="/fractionCalculator">Fraction</a> <a
+						class="navbar-brand" href="/bigFractionCalculator">BigFraction</a>
+					<div class="navbar-brand">Complex</div>
 				</div>
 			</div>
 		</nav>
 	</div>
 
-<br><br>BigFraction
+<br><br>Complex
 </body>

@@ -10,24 +10,13 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/application-context.xml</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>mvc-dispatcher</servlet-name>
-		<url-pattern>/new/*</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
- 	<servlet>
-		<servlet-name>hello</servlet-name>
-		<servlet-class>pl.wr.rss.rssfiz.show.math.HelloServlet</servlet-class>
-	</servlet> 
-	
-	<servlet-mapping>
-		<servlet-name>hello</servlet-name>
-		<url-pattern>/old/*</url-pattern>
-	</servlet-mapping>
-
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

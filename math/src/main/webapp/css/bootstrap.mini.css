@@ -1,0 +1,30 @@
+.navbar {
+}
+
+.navbar-default {
+	background-color: #f8f8f8;
+	border-color: #e7e7e7;
+}
+
+.navbar-header {
+	float: left;
+	background-color: skyblue;
+}
+
+.navbar-brand {
+	float: left;
+	padding: 15px 15px;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.navbar-brand:hover, .navbar-brand:focus {
+	text-decoration: none;
+}
+
+.container-fluid {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}

@@ -14,12 +14,22 @@
 
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-<link rel="stylesheet" href="/css/fractionCalculator.css" />
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="stylesheet" href="/css/bootstrap.mini.css">
 <script type="text/javascript" src="/js/main.js"></script>
 
 </head>
 
 <body>
+	<div><nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/home">Home</a> <div class="navbar-brand" >Fraction</div> <a class="navbar-brand" href="/bigFractionCalculator">BigFraction</a> <a
+					class="navbar-brand" href="/complexCalculator">Complex</a>
+			</div>
+		</div>
+	</nav>
+	</div>
 
 	<div id="outer">
 		<br>
@@ -37,7 +47,7 @@
 			</p>
 			<p>
 				<spring:message code="page.text3" />
-				<a href="/new/bigFractionCalculator">BigFraction</a>
+				<a href="/bigFractionCalculator">BigFraction</a>
 			</p>
 			<br> <br>
 		</div>
@@ -50,26 +60,27 @@
 
 				<table>
 					<tr>
-						<td><form:input path="total1" placeholder="${totalDesc}" /></td>
-						<td><form:input path="numerator1" placeholder="${numeratorDesc}" /> /</td>
-						<td><form:input path="denominator1" placeholder="${denominatorDesc}" />* 10 ^</td>
+						<td><form:input path="total1" placeholder="${totalDesc}" /> &nbsp;&nbsp;&nbsp;</td>
+						<td><form:input path="numerator1" placeholder="${numeratorDesc}" />/</td>
+						<td><form:input path="denominator1" placeholder="${denominatorDesc}" /> * 10^</td>
 						<td><form:input path="decimalPower1" placeholder="${decimalPowerDesc}" /></td>
 					</tr>
 
 					<tr>
-						<td><spring:message code="operationDesc" /> :</td>
-						<td colspan="3"><form:radiobutton path="operation" value="+" />+ <form:radiobutton path="operation"
-								value="-" />- <form:radiobutton path="operation" value="*" />* <form:radiobutton path="operation" value="/" />/
-						</td>
+						<td class="right"><spring:message code="operationDesc" />:</td>
+						<td colspan="3"><form:radiobutton path="operation" value="+" />+ &nbsp;<form:radiobutton path="operation"
+								value="-" />- &nbsp;<form:radiobutton path="operation" value="*" />* &nbsp;<form:radiobutton path="operation"
+								value="/" />/</td>
 					</tr>
 
 					<tr>
-						<td><form:input path="total2" placeholder="${totalDesc}" /></td>
-						<td><form:input path="numerator2" placeholder="${numeratorDesc}" /> /</td>
-						<td><form:input path="denominator2" placeholder="${denominatorDesc}" />* 10 ^</td>
+						<td><form:input path="total2" placeholder="${totalDesc}" /> &nbsp;&nbsp;&nbsp;</td>
+						<td><form:input path="numerator2" placeholder="${numeratorDesc}" />/</td>
+						<td><form:input path="denominator2" placeholder="${denominatorDesc}" /> * 10^</td>
 						<td><form:input path="decimalPower2" placeholder="${decimalPowerDesc}" /></td>
 					</tr>
 
+					<tr></tr>
 					<tr>
 						<td><input type="submit" value="${sendButton}" /></td>
 
