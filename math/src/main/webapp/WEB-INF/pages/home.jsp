@@ -24,5 +24,49 @@
 			</div>
 		</nav>
 	</div>
-<br><br>Home
+
+	<div id="outer">
+		<br>
+		<h2>
+			<spring:message code="home.page.title" />
+		</h2>
+		<div id="innerText">
+			<br> <br>
+			<p>
+				<spring:message code="home.page.text1" />
+				<a href="https://sourceforge.net/projects/rssfiz" target="_blank">https://sourceforge.net/projects/rssfiz</a>
+			</p>
+			<p>
+				<spring:message code="home.page.text2" />
+			</p>
+			<p>
+				<spring:message code="home.page.text3" />
+			</p>
+
+			<br> <br>
+		</div>
+
+		<div id="inner">
+			<pre>
+				<code>
+	&lt;dependency&gt;
+		&lt;groupId&gt;pl.wr.rss&lt;/groupId&gt;
+		&lt;artifactId&gt;rssfiz.math&lt;/artifactId&gt;
+		&lt;version&gt;1.0.2&lt;/version&gt;
+		&lt;type&gt;jar&lt;/type&gt;
+	&lt;/dependency&gt;
+		
+	&lt;repositories&gt;
+		&lt;repository&gt;
+			&lt;id&gt;rss_repository&lt;/id&gt;
+			&lt;name&gt;RodakSoftStudio&lt;/name&gt;
+			&lt;url&gt;https://sourceforge.net/projects/rssfiz/files/maven2/&lt;/url&gt;
+			&lt;layout&gt;default&lt;/layout&gt;
+		&lt;/repository&gt;
+	&lt;/repositories&gt;	
+		</code>
+			</pre>
+		</div>
+		<br> <br> <br>
+	</div>
 </body>

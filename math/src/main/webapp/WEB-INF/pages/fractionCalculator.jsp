@@ -21,38 +21,42 @@
 </head>
 
 <body>
-	<div><nav class="navbar navbar-default" role="navigation">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/home">Home</a> <div class="navbar-brand" >Fraction</div> <a class="navbar-brand" href="/bigFractionCalculator">BigFraction</a> <a
-					class="navbar-brand" href="/complexCalculator">Complex</a>
+	<div>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/home">Home</a>
+					<div class="navbar-brand">Fraction</div>
+					<a class="navbar-brand" href="/bigFractionCalculator">BigFraction</a> <a class="navbar-brand"
+						href="/complexCalculator">Complex</a>
+				</div>
 			</div>
-		</div>
-	</nav>
+		</nav>
 	</div>
 
 	<div id="outer">
 		<br>
 		<h2>
-			<spring:message code="page.title" />
+			<spring:message code="fraction.page.title" />
 		</h2>
 		<div id="innerText">
 			<br> <br>
 			<p>
-				<spring:message code="page.text1" />
+				<spring:message code="fraction.page.text1" />
 				<a href="https://sourceforge.net/projects/rssfiz" target="_blank">https://sourceforge.net/projects/rssfiz</a>
 			</p>
 			<p>
-				<spring:message code="page.text2" />
+				<spring:message code="fraction.page.text2" />
 			</p>
 			<p>
-				<spring:message code="page.text3" />
+				<spring:message code="fraction.page.text3" />
 				<a href="/bigFractionCalculator">BigFraction</a>
 			</p>
 			<br> <br>
 		</div>
 
 		<div id="inner">
+			<br>
 
 			<form:form method="POST" commandName="myData">
 
@@ -89,7 +93,7 @@
 				</table>
 			</form:form>
 
-			<form id="resetForm" action="/new/fractionCalculator" method="get"></form>
+			<form id="resetForm" action="/fractionCalculator" method="get"></form>
 
 			<br>
 			<c:if test="${not empty result}">
@@ -99,6 +103,12 @@
 				</div>
 			</c:if>
 			<div class="fat">
+				<c:if test="${not empty isResult}">
+					<div class="inline">
+						<spring:message code="resultDesc" />
+						=
+					</div>
+				</c:if>
 				<c:if test="${not empty longResult}">
 					<div class="inline">${longResult}</div>
 				</c:if>
@@ -129,11 +139,19 @@
 					</c:if>
 				</c:if>
 
-				<c:if test="${not empty approximate}">
-					<div class="newline">result is approximate!</div>
+				<c:if test="${not empty doubleResult}">
+					<div class="newline">
+						<spring:message code="resultDesc" />
+						double = ${doubleResult}
+					</div>
 				</c:if>
 
-				<div class="newline">${doubleResult}</div>
+				<c:if test="${not empty approximate}">
+					<div class="newline">
+						<spring:message code="approximate" />
+					</div>
+				</c:if>
+				<br>
 			</div>
 		</div>
 		<br> <br> <br>

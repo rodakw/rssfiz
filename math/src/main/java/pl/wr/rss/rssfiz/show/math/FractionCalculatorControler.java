@@ -80,6 +80,10 @@ public class FractionCalculatorControler {
 
 		model.addAttribute("result", resultFraction);
 		model.addAttribute("doubleResult", resultFraction.doubleValue());
+		
+		if (resultFraction.getUncertainty() == Fraction.UNKNOWN) {
+			model.addAttribute("approximate", true);
+		}
 
 		if (longResult != 0) {
 			model.addAttribute("longResult", resultFraction.longValue());
@@ -89,6 +93,9 @@ public class FractionCalculatorControler {
 		if (resultFraction.getNumerator() != 0) {
 			model.addAttribute("numerator", resultFraction.getNumerator());
 			model.addAttribute("denominator", resultFraction.getDenominator());
+		}
+		if (resultFraction.getNumerator() != 0 || longResult != 0) {
+			model.addAttribute("isResult", true);
 		}
 
 		int decimalPower = resultFraction.getDecimalPower();
@@ -103,10 +110,6 @@ public class FractionCalculatorControler {
 				model.addAttribute("denominatorExt",
 						(long) (resultFraction.getDenominator() * Math.pow(10, Math.abs(decimalPower))));
 			}
-		}
-
-		if (resultFraction.getUncertainty() == Fraction.UNKNOWN) {
-			model.addAttribute("approximate", true);
 		}
 
 		return "fractionCalculator";
