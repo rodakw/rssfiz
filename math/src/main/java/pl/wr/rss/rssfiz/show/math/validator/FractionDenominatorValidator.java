@@ -22,15 +22,12 @@ public class FractionDenominatorValidator implements Validator {
         int num = (int) map.get("number");
         Object value = map.get("value");
         Object valueZero = null;
-
         if (value instanceof Long) {
             value = (Long) map.get("value");
             valueZero = 0L;
         } else if (value instanceof BigInteger) {
             value = (BigInteger) map.get("value");
             valueZero = BigInteger.ZERO;
-        }else{
-            errors.reject("denominator1.zero");
         }
 
         switch (num) {

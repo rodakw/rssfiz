@@ -8,8 +8,8 @@ import java.math.BigInteger;
  */
 public class MixedBigNumber {
 
-	Long total1;
-	Long total2;
+	BigInteger total1;
+	BigInteger total2;
 	BigInteger numerator1;
 	BigInteger numerator2;
 	BigInteger denominator1;
@@ -17,16 +17,17 @@ public class MixedBigNumber {
 	Integer decimalPower1;
 	Integer decimalPower2;
 	String operation;
-    public Long getTotal1() {
+	
+    public BigInteger getTotal1() {
         return total1;
     }
-    public void setTotal1(Long total1) {
+    public void setTotal1(BigInteger total1) {
         this.total1 = total1;
     }
-    public Long getTotal2() {
+    public BigInteger getTotal2() {
         return total2;
     }
-    public void setTotal2(Long total2) {
+    public void setTotal2(BigInteger total2) {
         this.total2 = total2;
     }
     public BigInteger getNumerator1() {

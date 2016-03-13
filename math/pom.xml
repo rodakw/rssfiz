@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>pl.wr.rss</groupId>
 			<artifactId>rssfiz.math</artifactId>
-			<version>1.0.2</version>
+			<version>1.0.3_b</version>
 		</dependency>
 	</dependencies>
 	<build>

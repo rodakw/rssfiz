@@ -1,5 +1,6 @@
 package pl.wr.rss.rssfiz.show.math;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,146 +21,150 @@ import pl.wr.rss.rssfiz.show.math.validator.FractionDenominatorValidator;
 @Controller
 @RequestMapping("/bigFractionCalculator")
 public class BigFractionCalculatorControler {
-    
-    private int FIRST_NUMBER = 1;
-    private int SECOND_NUMBER = 2;
-    
-    @Autowired
-    FractionDenominatorValidator fractionDenominatorValidator;
+
+	private int FIRST_NUMBER = 1;
+	private int SECOND_NUMBER = 2;
+
+	@Autowired
+	FractionDenominatorValidator fractionDenominatorValidator;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String viewForm(Model model) {
 
-	    MixedBigNumber mixedNumber = new MixedBigNumber();
-        mixedNumber.setOperation("+");
+		MixedBigNumber mixedNumber = new MixedBigNumber();
+		mixedNumber.setOperation("+");
 
-        model.addAttribute("myData", mixedNumber);
+		model.addAttribute("myData", mixedNumber);
 
 		return "bigFractionCalculator";
 	}
-	
-	   @RequestMapping(method = RequestMethod.POST)
-	    public String calculateForm(@ModelAttribute("myData") MixedBigNumber myData, BindingResult result, Model model) {
 
-	        Long total1 = myData.getTotal1();
-	        Long total2 = myData.getTotal2();
-	        BigInteger numerator1 = myData.getNumerator1();
-	        BigInteger numerator2 = myData.getNumerator2();
-	        BigInteger denominator1 = myData.getDenominator1();
-	        BigInteger denominator2 = myData.getDenominator2();
-	        Integer decimalPower1 = myData.getDecimalPower1();
-	        Integer decimalPower2 = myData.getDecimalPower2();
-	        String operation = myData.getOperation();
+	@RequestMapping(method = RequestMethod.POST)
+	public String calculateForm(@ModelAttribute("myData") MixedBigNumber myData, BindingResult result, Model model) {
 
-	        BigFraction resultFraction = null;
-	        BigFraction x = makeFraction(total1, numerator1, denominator1, decimalPower1, FIRST_NUMBER, result);
-	        BigFraction y = makeFraction(total2, numerator2, denominator2, decimalPower2, SECOND_NUMBER, result);
+		BigInteger total1 = myData.getTotal1();
+		BigInteger total2 = myData.getTotal2();
+		BigInteger numerator1 = myData.getNumerator1();
+		BigInteger numerator2 = myData.getNumerator2();
+		BigInteger denominator1 = myData.getDenominator1();
+		BigInteger denominator2 = myData.getDenominator2();
+		Integer decimalPower1 = myData.getDecimalPower1();
+		Integer decimalPower2 = myData.getDecimalPower2();
+		String operation = myData.getOperation();
 
-	        switch (operation) {
-	        case "+":
-	            resultFraction = BigFraction.add(x, y);
-	            break;
-	        case "-":
-	            resultFraction = BigFraction.subtract(x, y);
-	            break;
-	        case "*":
-	            resultFraction = BigFraction.multiply(x, y);
-	            break;
-	        case "/":
-	            if (y.isZero()) {
-	                result.reject("number2.required");
-	                return "fractionCalculator";
-	            } else {
-	                resultFraction = BigFraction.divide(x, y);
-	            }
-	            break;
+		BigFraction resultFraction = null;
+		BigFraction x = makeFraction(total1, numerator1, denominator1, decimalPower1, FIRST_NUMBER, result);
+		BigFraction y = makeFraction(total2, numerator2, denominator2, decimalPower2, SECOND_NUMBER, result);
 
-	        default:
-	            return "bigFractionCalculator";
-	        }
+		switch (operation) {
+		case "+":
+			resultFraction = BigFraction.add(x, y);
+			break;
+		case "-":
+			resultFraction = BigFraction.subtract(x, y);
+			break;
+		case "*":
+			resultFraction = BigFraction.multiply(x, y);
+			break;
+		case "/":
+			if (y.isZero()) {
+				result.reject("number2.required");
+				return "fractionCalculator";
+			} else {
+				resultFraction = BigFraction.divide(x, y);
+			}
+			break;
 
-	        long longResult = resultFraction.longValue();
+		default:
+			return "bigFractionCalculator";
+		}
 
-	        model.addAttribute("result", resultFraction);
-	        model.addAttribute("doubleResult", resultFraction.doubleValue());
-	        
-	        if (resultFraction.getUncertainty() == BigFraction.UNKNOWN) {
-	            model.addAttribute("approximate", true);
-	        }
+		BigDecimal longResult = resultFraction.bigDecimalValue();
 
-	        if (longResult != 0) {
-	            model.addAttribute("longResult", resultFraction.longValue());
-	            resultFraction = BigFraction.subtract(resultFraction, new BigFraction(resultFraction.longValue()));
-	        }
+		model.addAttribute("result", resultFraction);
+		model.addAttribute("doubleResult", resultFraction.doubleValue());
 
-	        if (!resultFraction.getNumerator().equals(BigInteger.ZERO)) {
-	            model.addAttribute("numerator", resultFraction.getNumerator());
-	            model.addAttribute("denominator", resultFraction.getDenominator());
-	        }
-	        if (!resultFraction.getNumerator().equals(BigInteger.ZERO) || longResult != 0) {
-	            model.addAttribute("isResult", true);
-	        }
+		if (resultFraction.getUncertainty() == BigFraction.UNKNOWN) {
+			model.addAttribute("approximate", true);
+		}
 
-//	        int decimalPower = resultFraction.getDecimalPower();
+		if (longResult.intValue() != 0) {
+			model.addAttribute("longResult", resultFraction.bigDecimalValue().toBigInteger());
+			resultFraction = BigFraction.subtract(resultFraction,
+					new BigFraction(resultFraction.bigDecimalValue().toBigInteger()));
+		}
 
-//	        if (decimalPower != 0) {
-//	            model.addAttribute("decimalPower", resultFraction.getDecimalPower());
-//	            if (decimalPower > 0) {
-//	                model.addAttribute("numeratorExt", (long) (resultFraction.getNumerator() * Math.pow(10, decimalPower)));
-//	                model.addAttribute("denominatorExt", resultFraction.getDenominator());
-//	            } else {
-//	                model.addAttribute("numeratorExt", (resultFraction.getNumerator()));
-//	                model.addAttribute("denominatorExt",
-//	                        (long) (resultFraction.getDenominator() * Math.pow(10, Math.abs(decimalPower))));
-//	            }
-//	        }
+		if (!resultFraction.getNumerator().equals(BigInteger.ZERO)) {
+			model.addAttribute("numerator", resultFraction.getNumerator());
+			model.addAttribute("denominator", resultFraction.getDenominator());
+		}
+		if (!resultFraction.getNumerator().equals(BigInteger.ZERO) || longResult.intValue() != 0) {
+			model.addAttribute("isResult", true);
+		}
 
-	        return "bigFractionCalculator";
-	    }
+		// int decimalPower = resultFraction.getDecimalPower();
+		//
+		// if (decimalPower != 0) {
+		// model.addAttribute("decimalPower", resultFraction.getDecimalPower());
+		// if (decimalPower > 0) {
+		// model.addAttribute("numeratorExt", (long)
+		// (resultFraction.getNumerator() * Math.pow(10, decimalPower)));
+		// model.addAttribute("denominatorExt",
+		// resultFraction.getDenominator());
+		// } else {
+		// model.addAttribute("numeratorExt", (resultFraction.getNumerator()));
+		// model.addAttribute("denominatorExt",
+		// (long) (resultFraction.getDenominator() * Math.pow(10,
+		// Math.abs(decimalPower))));
+		// }
+		// }
 
-    private BigFraction makeFraction(Long total, BigInteger numerator, BigInteger denominator, Integer decimalPower, int toValidate, BindingResult errors) {
-       
-        
-        boolean isT = total != null;
-        boolean isN = numerator != null;
-        boolean isP = decimalPower != null;
+		return "bigFractionCalculator";
+	}
 
-        if (!isT && !isN && !isP) {
-            return BigFraction.ZERO;
-        } else if (isT && !isN && !isP) {
-            return new BigFraction(total);
-        } else if (isT && !isN & isP) {
-            return new BigFraction(total, 0, 1, decimalPower);
-        } else if (!isT && isN & !isP) {
-            validateDenominator(denominator, toValidate, errors);
-            if (!errors.hasErrors()) {
-                return new BigFraction(numerator, denominator);
-            }
-        } else if (!isT && isN & isP) {
-            validateDenominator(denominator, toValidate, errors);
-            if (!errors.hasErrors()) {
-                return new BigFraction(numerator, denominator, decimalPower);
-            }
-//        } else if (isT && isN & !isP) {
-//            validateDenominator(denominator, toValidate, errors);
-//            if (!errors.hasErrors()) {
-//                return new BigFraction(total, numerator, denominator, 0);
-//            }
-//        } else {
-//            validateDenominator(denominator, toValidate, errors);
-//            if (!errors.hasErrors()) {
-//                return new BigFraction(total, numerator, denominator, decimalPower);
-//            }
-        }
-        return BigFraction.ZERO;
-    }
-    
-    private void validateDenominator(BigInteger denominator, Integer toValidate, BindingResult errors) {
+	private BigFraction makeFraction(BigInteger total, BigInteger numerator, BigInteger denominator,
+			Integer decimalPower, int toValidate, BindingResult errors) {
 
-        Map<String, Number> map = new HashMap<String, Number>();
-        map.put("value", denominator);
-        map.put("number", toValidate);
+		boolean isT = total != null;
+		boolean isN = numerator != null;
+		boolean isP = decimalPower != null;
 
-        fractionDenominatorValidator.validate(map, errors);
-    }
+		if (!isT && !isN && !isP) {
+			return BigFraction.ZERO;
+		} else if (isT && !isN && !isP) {
+			return new BigFraction(total);
+		} else if (isT && !isN & isP) {
+			return new BigFraction(total, BigInteger.ZERO, BigInteger.ONE, decimalPower);
+		} else if (!isT && isN & !isP) {
+			validateDenominator(denominator, toValidate, errors);
+			if (!errors.hasErrors()) {
+				return new BigFraction(numerator, denominator);
+			}
+		} else if (!isT && isN & isP) {
+			validateDenominator(denominator, toValidate, errors);
+			if (!errors.hasErrors()) {
+				return new BigFraction(numerator, denominator, decimalPower);
+			}
+		} else if (isT && isN & !isP) {
+			validateDenominator(denominator, toValidate, errors);
+			if (!errors.hasErrors()) {
+				return new BigFraction(total, numerator, denominator, 0);
+			}
+		} else {
+			validateDenominator(denominator, toValidate, errors);
+			if (!errors.hasErrors()) {
+				return new BigFraction(total, numerator, denominator, decimalPower);
+			}
+		}
+		return BigFraction.ZERO;
+	}
+
+	private void validateDenominator(BigInteger denominator, Integer toValidate, BindingResult errors) {
+
+		Map<String, Number> map = new HashMap<String, Number>();
+		map.put("value", denominator);
+		map.put("number", toValidate);
+
+		fractionDenominatorValidator.validate(map, errors);
+	}
 }
