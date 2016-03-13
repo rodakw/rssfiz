@@ -100,7 +100,7 @@ public class BigFractionCalculatorControler {
 	            model.addAttribute("isResult", true);
 	        }
 
-	        int decimalPower = resultFraction.getDecimalPower();
+//	        int decimalPower = resultFraction.getDecimalPower();
 
 //	        if (decimalPower != 0) {
 //	            model.addAttribute("decimalPower", resultFraction.getDecimalPower());
