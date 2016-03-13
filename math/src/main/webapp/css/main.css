@@ -18,6 +18,18 @@
 	text-align: right;
 }
 
+.intWidth {
+	width: 85px;
+}
+
+.longWidth {
+	width: 145px;
+}
+
+.bigIntWidth {
+	width: 245px;
+}
+
 div.inline {
 	float: left;
 	margin: 5px;

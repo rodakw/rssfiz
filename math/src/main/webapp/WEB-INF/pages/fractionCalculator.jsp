@@ -64,10 +64,10 @@
 
 				<table>
 					<tr>
-						<td><form:input path="total1" placeholder="${totalDesc}" /> &nbsp;&nbsp;&nbsp;</td>
-						<td><form:input path="numerator1" placeholder="${numeratorDesc}" />/</td>
-						<td><form:input path="denominator1" placeholder="${denominatorDesc}" /> * 10^</td>
-						<td><form:input path="decimalPower1" placeholder="${decimalPowerDesc}" /></td>
+						<td><form:input path="total1" placeholder="${totalDesc}" cssClass="longWidth" /> &nbsp;&nbsp;&nbsp;</td>
+						<td><form:input path="numerator1" placeholder="${numeratorDesc}" cssClass="longWidth" />/</td>
+						<td><form:input path="denominator1" placeholder="${denominatorDesc}" cssClass="longWidth" /> * 10^</td>
+						<td><form:input path="decimalPower1" placeholder="${decimalPowerDesc}" cssClass="intWidth" /></td>
 					</tr>
 
 					<tr>
@@ -78,10 +78,10 @@
 					</tr>
 
 					<tr>
-						<td><form:input path="total2" placeholder="${totalDesc}" /> &nbsp;&nbsp;&nbsp;</td>
-						<td><form:input path="numerator2" placeholder="${numeratorDesc}" />/</td>
-						<td><form:input path="denominator2" placeholder="${denominatorDesc}" /> * 10^</td>
-						<td><form:input path="decimalPower2" placeholder="${decimalPowerDesc}" /></td>
+						<td><form:input path="total2" placeholder="${totalDesc}" cssClass="longWidth" /> &nbsp;&nbsp;&nbsp;</td>
+						<td><form:input path="numerator2" placeholder="${numeratorDesc}" cssClass="longWidth" />/</td>
+						<td><form:input path="denominator2" placeholder="${denominatorDesc}" cssClass="longWidth" /> * 10^</td>
+						<td><form:input path="decimalPower2" placeholder="${decimalPowerDesc}" cssClass="intWidth" /></td>
 					</tr>
 
 					<tr></tr>

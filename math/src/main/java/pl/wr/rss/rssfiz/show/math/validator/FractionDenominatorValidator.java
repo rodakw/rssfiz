@@ -1,5 +1,6 @@
 package pl.wr.rss.rssfiz.show.math.validator;
 
+import java.math.BigInteger;
 import java.util.Map;
 
 import org.springframework.validation.Errors;
@@ -19,20 +20,29 @@ public class FractionDenominatorValidator implements Validator {
         Map<String, Number> map = (Map<String, Number>) target;
 
         int num = (int) map.get("number");
-        Long value = (Long) map.get("value");
+        Object value = map.get("value");
+        Object valueZero = null;
+
+        if (value instanceof Long) {
+            value = (Long) map.get("value");
+            valueZero = 0L;
+        } else if (value instanceof BigInteger) {
+            value = (BigInteger) map.get("value");
+            valueZero = BigInteger.ZERO;
+        }
 
         switch (num) {
         case 1:
             if (value == null) {
                 errors.rejectValue("denominator1", "required.denominator1");
-            } else if (value.equals(0L)) {
+            } else if (value.equals(valueZero)) {
                 errors.rejectValue("denominator1", "denominator1.zero");
             }
             break;
         case 2:
             if (value == null) {
                 errors.rejectValue("denominator2", "required.denominator2");
-            } else if (value.equals(0L)) {
+            } else if (value.equals(valueZero)) {
                 errors.rejectValue("denominator2", "denominator2.zero");
             }
             break;
