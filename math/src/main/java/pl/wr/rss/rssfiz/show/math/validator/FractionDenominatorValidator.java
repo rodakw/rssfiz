@@ -29,6 +29,8 @@ public class FractionDenominatorValidator implements Validator {
         } else if (value instanceof BigInteger) {
             value = (BigInteger) map.get("value");
             valueZero = BigInteger.ZERO;
+        }else{
+            errors.reject("denominator1.zero");
         }
 
         switch (num) {
