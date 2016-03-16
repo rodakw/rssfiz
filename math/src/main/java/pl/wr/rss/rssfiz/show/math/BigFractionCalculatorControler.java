@@ -101,10 +101,10 @@ public class BigFractionCalculatorControler {
 			model.addAttribute("isResult", true);
 		}
 
-		// int decimalPower = resultFraction.getDecimalPower();
-		//
-		// if (decimalPower != 0) {
-		// model.addAttribute("decimalPower", resultFraction.getDecimalPower());
+		 int decimalPower = resultFraction.getDecimalPower();
+		
+		 if (decimalPower != 0) {
+		 model.addAttribute("decimalPower", resultFraction.getDecimalPower());
 		// if (decimalPower > 0) {
 		// model.addAttribute("numeratorExt", (long)
 		// (resultFraction.getNumerator() * Math.pow(10, decimalPower)));
@@ -116,7 +116,7 @@ public class BigFractionCalculatorControler {
 		// (long) (resultFraction.getDenominator() * Math.pow(10,
 		// Math.abs(decimalPower))));
 		// }
-		// }
+		 }
 
 		return "bigFractionCalculator";
 	}
