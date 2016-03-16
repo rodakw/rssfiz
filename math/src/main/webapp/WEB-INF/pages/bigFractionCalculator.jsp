@@ -36,19 +36,19 @@
 	<div id="outer">
 		<br>
 		<h2>
-			<spring:message code="fraction.page.title" />
+			<spring:message code="bigFraction.page.title" />
 		</h2>
 		<div id="innerText">
 			<br> <br>
 			<p>
-				<spring:message code="fraction.page.text1" />
+				<spring:message code="bigFraction.page.text1" />
 				<a href="https://sourceforge.net/projects/rssfiz" target="_blank">https://sourceforge.net/projects/rssfiz</a>
 			</p>
 			<p>
-				<spring:message code="fraction.page.text2" />
+				<spring:message code="bigFraction.page.text2" />
 			</p>
 			<p>
-				<spring:message code="fraction.page.text3" />
+				<spring:message code="bigFraction.page.text3" />
 				<a href="/fractionCalculator">Fraction</a>
 			</p>
 			<br> <br>
