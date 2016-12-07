@@ -1,10 +1,10 @@
 package pl.wr.rss.rssfiz.show.math.validator;
 
-import java.math.BigInteger;
-import java.util.Map;
-
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import java.math.BigInteger;
+import java.util.Map;
 
 public class FractionDenominatorValidator implements Validator {
 
@@ -31,23 +31,23 @@ public class FractionDenominatorValidator implements Validator {
         }
 
         switch (num) {
-        case 1:
-            if (value == null) {
-                errors.rejectValue("denominator1", "required.denominator1");
-            } else if (value.equals(valueZero)) {
-                errors.rejectValue("denominator1", "denominator1.zero");
-            }
-            break;
-        case 2:
-            if (value == null) {
-                errors.rejectValue("denominator2", "required.denominator2");
-            } else if (value.equals(valueZero)) {
-                errors.rejectValue("denominator2", "denominator2.zero");
-            }
-            break;
+            case 1:
+                if (value == null) {
+                    errors.rejectValue("denominator1", "required.denominator1");
+                } else if (value.equals(valueZero)) {
+                    errors.rejectValue("denominator1", "denominator1.zero");
+                }
+                break;
+            case 2:
+                if (value == null) {
+                    errors.rejectValue("denominator2", "required.denominator2");
+                } else if (value.equals(valueZero)) {
+                    errors.rejectValue("denominator2", "denominator2.zero");
+                }
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
 
     }
