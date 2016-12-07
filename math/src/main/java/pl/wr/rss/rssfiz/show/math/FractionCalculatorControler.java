@@ -1,8 +1,5 @@
 package pl.wr.rss.rssfiz.show.math;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,18 +7,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import pl.wr.math.number.Fraction;
 import pl.wr.rss.rssfiz.show.math.model.MixedNumber;
 import pl.wr.rss.rssfiz.show.math.util.CalculatorConstans;
 import pl.wr.rss.rssfiz.show.math.validator.FractionDenominatorValidator;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/fractionCalculator")
 public class FractionCalculatorControler {
 
     @Autowired
-    FractionDenominatorValidator fractionDenominatorValidator;
+    private FractionDenominatorValidator fractionDenominatorValidator;
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewForm(Model model) {
@@ -47,31 +46,31 @@ public class FractionCalculatorControler {
         Integer decimalPower2 = myData.getDecimalPower2();
         String operation = myData.getOperation();
 
-        Fraction resultFraction = null;
+        Fraction resultFraction;
         Fraction x = makeFraction(total1, numerator1, denominator1, decimalPower1, CalculatorConstans.FIRST_NUMBER, result);
         Fraction y = makeFraction(total2, numerator2, denominator2, decimalPower2, CalculatorConstans.SECOND_NUMBER, result);
 
         switch (operation) {
-        case "+":
-            resultFraction = Fraction.add(x, y);
-            break;
-        case "-":
-            resultFraction = Fraction.subtract(x, y);
-            break;
-        case "*":
-            resultFraction = Fraction.multiply(x, y);
-            break;
-        case "/":
-            if (y.isZero()) {
-                result.reject("number2.required");
-                return "fractionCalculator";
-            } else {
-                resultFraction = Fraction.divide(x, y);
-            }
-            break;
+            case "+":
+                resultFraction = Fraction.add(x, y);
+                break;
+            case "-":
+                resultFraction = Fraction.subtract(x, y);
+                break;
+            case "*":
+                resultFraction = Fraction.multiply(x, y);
+                break;
+            case "/":
+                if (y.isZero()) {
+                    result.reject("number2.required");
+                    return "fractionCalculator";
+                } else {
+                    resultFraction = Fraction.divide(x, y);
+                }
+                break;
 
-        default:
-            return "fractionCalculator";
+            default:
+                return "fractionCalculator";
         }
 
         long longResult = resultFraction.longValue();
