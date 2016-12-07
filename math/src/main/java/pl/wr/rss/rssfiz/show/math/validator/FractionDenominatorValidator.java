@@ -1,10 +1,10 @@
 package pl.wr.rss.rssfiz.show.math.validator;
 
-import java.math.BigInteger;
-import java.util.Map;
-
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import java.math.BigInteger;
+import java.util.Map;
 
 public class FractionDenominatorValidator implements Validator {
 
