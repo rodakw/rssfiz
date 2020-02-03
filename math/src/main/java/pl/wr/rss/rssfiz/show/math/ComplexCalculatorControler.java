@@ -75,7 +75,8 @@ public class ComplexCalculatorControler {
         boolean isI = imaginary != null;
 
         if (!isR && !isI) {
-            return Complex.ZERO;
+//            return Complex.ZERO;
+            return new Complex(0, 0);
         } else if (isR && !isI) {
             return new Complex(real, 0);
         } else if (!isR && isI) {

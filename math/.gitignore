@@ -6,3 +6,5 @@
 # Target folders
 target/
 /target/
+/.idea/
+/projectFilesBackup/.idea/workspace.xml
