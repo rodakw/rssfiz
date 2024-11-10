@@ -35,7 +35,7 @@ public class ComplexCalculatorControler {
         Double imaginary2 = myData.getImaginary2();
         String operation = myData.getOperation();
 
-        Complex resultComplex = null;
+        Complex resultComplex;
 
         Complex x = makeComplex(real1, imaginary1, CalculatorConstans.FIRST_NUMBER, result);
         Complex y = makeComplex(real2, imaginary2, CalculatorConstans.SECOND_NUMBER, result);

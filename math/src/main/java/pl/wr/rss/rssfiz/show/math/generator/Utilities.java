@@ -7,7 +7,7 @@ public class Utilities {
 
     public static <K, V extends Comparable<V>> List<Entry<K, V>> sortByValue(Map<K, V> map) {
         List<Entry<K, V>> entries = new ArrayList<>(map.entrySet());
-        Collections.sort(entries, new ByValue<>());
+        entries.sort(new ByValue<>());
         return entries;
     }
 

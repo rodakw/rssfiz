@@ -18,7 +18,7 @@ public class Generator {
 //        System.out.println(sortedParams);
 
         SortedSet<Integer> maxMultipier = new TreeSet<>();
-        Double sum = 0.0;
+        double sum = 0.0;
         for (Map.Entry<String, Double> sortedParam : sortedParams) {
             maxMultipier.add(Utilities.multiplier(sortedParam.getValue()));
             sum = Utilities.sum(sortedParam.getValue(),sum);
@@ -35,8 +35,7 @@ public class Generator {
         }
         System.out.println(sortedParams);
 
-        Integer last = maxMultipier.last();
-        sizeTable = last;
+        sizeTable = maxMultipier.last();
         table = new String[sizeTable];
 
 
@@ -50,7 +49,7 @@ public class Generator {
 
     private void fillTable(String name, double percent) {
         int count = 0;
-        Double b = 0.0;
+        double b = 0.0;
         int a;
         for (int i = 0; count < percent; i = i + a) {
 
@@ -63,7 +62,7 @@ public class Generator {
                 count = 0;
             }
             b = b - Math.floor(b) + (sizeTable / percent);
-            a = b.intValue();
+            a = (int) b;
             if (table[i] == null) {
                 table[i] = name;
                 ++count;
@@ -74,8 +73,8 @@ public class Generator {
     }
 
     private String randomValue() {
-        Double round = Math.floor(Math.random() * (double) sizeTable);
-        return table[round.intValue()];
+        double round = Math.floor(Math.random() * (double) sizeTable);
+        return table[(int) round];
     }
 
 }

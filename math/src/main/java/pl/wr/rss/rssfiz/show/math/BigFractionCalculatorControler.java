@@ -5,7 +5,6 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,8 +21,12 @@ import pl.wr.rss.rssfiz.show.math.validator.FractionDenominatorValidator;
 @RequestMapping("/bigFractionCalculator")
 public class BigFractionCalculatorControler {
 
-    @Autowired
+    final
     FractionDenominatorValidator fractionDenominatorValidator;
+
+    public BigFractionCalculatorControler(FractionDenominatorValidator fractionDenominatorValidator) {
+        this.fractionDenominatorValidator = fractionDenominatorValidator;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewForm(Model model) {
@@ -49,7 +52,7 @@ public class BigFractionCalculatorControler {
         Integer decimalPower2 = myData.getDecimalPower2();
         String operation = myData.getOperation();
 
-        BigFraction resultFraction = null;
+        BigFraction resultFraction;
         BigFraction x = makeFraction(total1, numerator1, denominator1, decimalPower1, CalculatorConstans.FIRST_NUMBER, result);
         BigFraction y = makeFraction(total2, numerator2, denominator2, decimalPower2, CalculatorConstans.SECOND_NUMBER, result);
 

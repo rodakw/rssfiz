@@ -1,6 +1,5 @@
 package pl.wr.rss.rssfiz.show.math;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,8 +18,11 @@ import java.util.Map;
 @RequestMapping("/fractionCalculator")
 public class FractionCalculatorControler {
 
-    @Autowired
-    private FractionDenominatorValidator fractionDenominatorValidator;
+    private final FractionDenominatorValidator fractionDenominatorValidator;
+
+    public FractionCalculatorControler(FractionDenominatorValidator fractionDenominatorValidator) {
+        this.fractionDenominatorValidator = fractionDenominatorValidator;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewForm(Model model) {
@@ -149,7 +151,7 @@ public class FractionCalculatorControler {
 
     private void validateDenominator(Long denominator, Integer toValidate, BindingResult errors) {
 
-        Map<String, Number> map = new HashMap<String, Number>();
+        Map<String, Number> map = new HashMap<>();
         map.put("value", denominator);
         map.put("number", toValidate);
 

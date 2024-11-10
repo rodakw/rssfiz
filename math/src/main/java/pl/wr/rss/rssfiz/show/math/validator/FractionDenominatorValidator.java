@@ -23,10 +23,10 @@ public class FractionDenominatorValidator implements Validator {
         Object value = map.get("value");
         Object valueZero = null;
         if (value instanceof Long) {
-            value = (Long) map.get("value");
+            value = map.get("value");
             valueZero = 0L;
         } else if (value instanceof BigInteger) {
-            value = (BigInteger) map.get("value");
+            value = map.get("value");
             valueZero = BigInteger.ZERO;
         }
 

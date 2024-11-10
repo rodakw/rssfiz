@@ -27,7 +27,7 @@ public class HelloWorldController {
     
     @RequestMapping("/dupa2")
     public ModelAndView handleRequestInternal(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
+            HttpServletResponse response) {
 
             ModelAndView model = new ModelAndView("HelloWorldPage");
             model.addObject("msg", request.getParameter("cos"));

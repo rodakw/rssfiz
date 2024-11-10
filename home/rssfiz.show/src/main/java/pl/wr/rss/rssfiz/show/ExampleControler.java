@@ -1,6 +1,5 @@
 package pl.wr.rss.rssfiz.show;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,8 +14,12 @@ import pl.wr.rss.rssfiz.show.validator.ExampleValidator;
 @RequestMapping("/exampleForm")
 public class ExampleControler {
 
-    @Autowired
+    final
     ExampleValidator exampleValidator;
+
+    public ExampleControler(ExampleValidator exampleValidator) {
+        this.exampleValidator = exampleValidator;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewForm(Model model) {
