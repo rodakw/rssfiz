@@ -1,5 +1,6 @@
 package pl.wr.rss.rssfiz.show.validator;
 
+import org.jspecify.annotations.NonNull;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -9,12 +10,12 @@ import pl.wr.rss.rssfiz.show.model.ExampleForm;
 public class ExampleValidator implements Validator{
 
     @Override
-    public boolean supports(Class<?> clazz) {
+    public boolean supports(@NonNull Class<?> clazz) {
         return ExampleForm.class.isAssignableFrom(clazz);
     }
 
     @Override
-    public void validate(Object target, Errors errors) {
+    public void validate(@NonNull Object target, @NonNull Errors errors) {
         
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "param1",
                 "required.param1", "Param1 name is required.");
